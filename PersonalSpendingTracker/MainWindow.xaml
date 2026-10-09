@@ -1,12 +1,49 @@
 ﻿<Window x:Class="PersonalSpendingTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PersonalSpendingTracker"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Előfizetés-követő" Height="420" Width="520">
+    <TabControl Margin="10">
+
+        <TabItem Header="Havi előfizetések">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="tbMonthlyName" Width="180" Margin="0,0,5,0"/>
+                    <TextBox x:Name="tbMonthlyPrice" Width="80" Margin="0,0,5,0"/>
+                    <Button Content="Hozzáadás" Click="AddMonthly_Click" Padding="10,0"/>
+                    <Button Content="Törlés" Click="DeleteMonthly_Click" Padding="10,0" Margin="5,0,0,0"/>
+                </StackPanel>
+                <DataGrid x:Name="dgMonthly" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Éves előfizetések">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="tbYearlyName" Width="180" Margin="0,0,5,0"/>
+                    <TextBox x:Name="tbYearlyPrice" Width="80" Margin="0,0,5,0"/>
+                    <Button Content="Hozzáadás" Click="AddYearly_Click" Padding="10,0"/>
+                    <Button Content="Törlés" Click="DeleteYearly_Click" Padding="10,0" Margin="5,0,0,0"/>
+                </StackPanel>
+                <DataGrid x:Name="dgYearly" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Összesítés">
+            <StackPanel Margin="10">
+                <TextBlock x:Name="tbMonthlyTotal" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tbYearlyTotal" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tbPerYear" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tbPerMonth"/>
+            </StackPanel>
+        </TabItem>
+
+    </TabControl>
 </Window>
