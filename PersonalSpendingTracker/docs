@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Előfizetés-követő</title>
+    <style>
+        body { font-family: "Segoe UI", sans-serif; background: #F5F6FA; color: #111827;
+               max-width: 560px; margin: 80px auto; padding: 0 20px; text-align: center; }
+        a.btn { display: inline-block; background: #3B82F6; color: white; text-decoration: none;
+                padding: 12px 28px; border-radius: 6px; margin: 20px 0; }
+        p { color: #6B7280; }
+    </style>
+</head>
+<body>
+    <h1>Előfizetés-követő</h1>
+    <p>Kezeld egy helyen a havi és éves előfizetéseidet, és lásd, mennyibe kerülnek összesen.</p>
+    <a class="btn" href="https://github.com/FELHASZNALONEV/PersonalSpendingTracker/releases/latest">Letöltés Windowsra</a>
+    <p>Letöltés után csomagold ki a zipet, és indítsd el a PersonalSpendingTracker.exe fájlt.
+       Ha a Windows figyelmeztet, válaszd a <b>További információ, Futtatás mindenképp</b> lehetőséget.</p>
+</body>
+</html>
