@@ -13,6 +13,17 @@ namespace PersonalSpendingTracker
         public MainWindow()
         {
             InitializeComponent();
+
+            Database.Init();
+            foreach (Subscription s in Database.Load(false))
+            {
+                monthly.Add(s);
+            }
+            foreach (Subscription s in Database.Load(true))
+            {
+                yearly.Add(s);
+            }
+
             dgMonthly.ItemsSource = monthly;
             dgYearly.ItemsSource = yearly;
             UpdateSummary();
@@ -20,15 +31,15 @@ namespace PersonalSpendingTracker
 
         private void AddMonthly_Click(object sender, RoutedEventArgs e)
         {
-            Add(monthly, tbMonthlyName, tbMonthlyPrice);
+            Add(monthly, tbMonthlyName, tbMonthlyPrice, false);
         }
 
         private void AddYearly_Click(object sender, RoutedEventArgs e)
         {
-            Add(yearly, tbYearlyName, tbYearlyPrice);
+            Add(yearly, tbYearlyName, tbYearlyPrice, true);
         }
 
-        private void Add(ObservableCollection<Subscription> list, TextBox name, TextBox price)
+        private void Add(ObservableCollection<Subscription> list, TextBox name, TextBox price, bool isYearly)
         {
             decimal p;
             if (!decimal.TryParse(price.Text, out p))
@@ -37,7 +48,10 @@ namespace PersonalSpendingTracker
                 return;
             }
 
-            list.Add(new Subscription { Name = name.Text, Price = p });
+            Subscription sub = new Subscription { Name = name.Text, Price = p };
+            sub.Id = Database.Add(sub, isYearly);
+            list.Add(sub);
+
             name.Clear();
             price.Clear();
             UpdateSummary();
@@ -62,6 +76,7 @@ namespace PersonalSpendingTracker
                 return;
             }
 
+            Database.Delete(selected.Id);
             list.Remove(selected);
             UpdateSummary();
         }
